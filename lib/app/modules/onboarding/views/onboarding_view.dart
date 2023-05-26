@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:dodone/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -49,7 +50,9 @@ class OnboardingView extends GetView<OnboardingController> {
                   borderRadius: BorderRadius.circular(12), // <-- Radius
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Routes.HOME);
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
