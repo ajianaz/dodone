@@ -1,12 +1,19 @@
+import 'dart:async';
+
+import 'package:dodone/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
-
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
+    goToOnboarding();
+  }
+
+  goToOnboarding() async {
+    Future.delayed(Duration(seconds: 3), () {
+      Get.toNamed(Routes.ONBOARDING);
+    });
   }
 
   @override
@@ -18,6 +25,4 @@ class SplashController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
-  void increment() => count.value++;
 }
