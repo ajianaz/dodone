@@ -11,6 +11,13 @@ dependencies:
   flutter:
     sdk: flutter
   rive: ^0.11.0
+  jwt_decoder: ^2.0.1
+  intl: ^0.18.1
+  flutter_jailbreak_detection: ^1.10.0
+  package_info_plus: ^4.0.2
+  dio: ^5.1.2
+  flutter_screenutil: ^5.7.0
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_lints: 2.0.1
@@ -22,3 +29,4 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/logos/

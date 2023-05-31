@@ -7,6 +7,7 @@ abstract class Routes {
   static const ONBOARDING = _Paths.ONBOARDING;
   static const SETTING = _Paths.SETTING;
   static const DASHBOARD = _Paths.DASHBOARD;
+  static const SPLASH = _Paths.SPLASH;
 }
 
 abstract class _Paths {
@@ -15,4 +16,5 @@ abstract class _Paths {
   static const ONBOARDING = '/onboarding';
   static const SETTING = '/setting';
   static const DASHBOARD = '/dashboard';
+  static const SPLASH = '/splash';
 }
