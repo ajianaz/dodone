@@ -24,10 +24,10 @@ class OnboardingView extends GetView<OnboardingController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset(
-                AppAsset.logo('urtask-logo.png'),
-                height: 110,
-              ),
+              // Image.asset(
+              //   AppAsset.logo('urtask-logo.png'),
+              //   height: 110,
+              // ),
               Expanded(
                 flex: 1,
                 child: RiveAnimation.asset(
@@ -41,7 +41,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: 48.w,
+                    fontSize: 36.w,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -51,7 +51,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                     color: primaryColor,
-                    fontSize: 48.w,
+                    fontSize: 40.w,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
