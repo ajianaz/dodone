@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:dodone/app/data/models/menu.dart';
+import 'package:dodone/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:dodone/app/modules/setting/views/setting_view.dart';
 import 'package:dodone/app/widgets/btm_nav_item.dart';
 import 'package:dodone/app/utils/rive_utils.dart';
 
@@ -38,6 +40,7 @@ class HomeView extends GetView<HomeController> {
                           press: () {
                             RiveUtils.chnageSMIBoolState(navBar.rive.status!);
                             controller.updateSelectedBtmNav(navBar);
+                            controller.changeTabIndex(index);
                           },
                           riveOnInit: (artboard) {
                             navBar.rive.status = RiveUtils.getRiveInput(
@@ -53,12 +56,16 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
       ),
-      body: Center(
-        child: Text(
-          "Center",
-          style: TextStyle(
-            fontSize: 18.0,
-          ),
+      body: Obx(
+        () => IndexedStack(
+          index: controller.tabIndex.value,
+          children: [
+            DashboardView(),
+            DashboardView(),
+            DashboardView(),
+            DashboardView(),
+            SettingView(),
+          ],
         ),
       ),
     );

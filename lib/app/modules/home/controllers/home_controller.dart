@@ -10,6 +10,12 @@ class HomeController extends GetxController
 
   late SMIBool isMenuOpenInput;
 
+  var tabIndex = 0.obs;
+
+  void changeTabIndex(int index) {
+    tabIndex.value = index;
+  }
+
   void updateSelectedBtmNav(Menu menu) {
     if (selectedBottonNav.value != menu) {
       selectedBottonNav.value = menu;
