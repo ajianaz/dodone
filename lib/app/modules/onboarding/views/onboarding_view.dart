@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, sort_child_properties_last
 
-import 'package:dodone/config/colors.dart';
+import 'package:dodone/app/routes/app_pages.dart';
 import 'package:dodone/config/constant.dart';
+import 'package:dodone/styles/colors.dart';
 import 'package:dodone/utils/app_asset.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -50,7 +51,7 @@ class OnboardingView extends GetView<OnboardingController> {
                 APPNAME,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    color: primaryColor,
+                    color: AppColor.primaryColor1,
                     fontSize: 40.w,
                     fontWeight: FontWeight.w700,
                   ),
@@ -73,10 +74,12 @@ class OnboardingView extends GetView<OnboardingController> {
                   ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(50),
-                    backgroundColor: primaryColor,
-                    foregroundColor: bgColor,
+                    backgroundColor: AppColor.primaryColor1,
+                    foregroundColor: AppColor.bgColor,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAndToNamed(Routes.LOGIN);
+                  },
                 ),
               ),
               SizedBox(

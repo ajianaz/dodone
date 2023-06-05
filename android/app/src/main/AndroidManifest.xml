@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="dev.ajianaz.dodone">
+    package="dev.ajianaz.urtask">
    <application
         android:label="dodone"
         android:name="${applicationName}"
