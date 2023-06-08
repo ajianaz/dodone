@@ -12,17 +12,7 @@ class SplashController extends GetxController {
 
   goToOnboarding() async {
     Future.delayed(Duration(seconds: 3), () {
-      Get.toNamed(Routes.ONBOARDING);
+      Get.offAndToNamed(Routes.ONBOARDING);
     });
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
   }
 }
