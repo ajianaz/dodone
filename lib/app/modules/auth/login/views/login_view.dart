@@ -1,8 +1,9 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:dodone/app/routes/app_pages.dart';
+import 'package:dodone/widgets/text_field/text_field_input.dart';
+import 'package:dodone/widgets/text_field/text_field_password.dart';
 import 'package:dodone/styles/colors.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
@@ -40,72 +41,20 @@ class LoginView extends GetView<LoginController> {
                   'login_subtitle'.tr,
                   style: TextStyle(fontSize: 20),
                 ).addPadding(vertical: 8),
-                Text(
-                  dotenv.env['FOOBAR'].toString(),
-                  style: TextStyle(fontSize: 20),
-                ).addPadding(vertical: 8),
-                TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.done),
-                  ),
+                TextFieldInput(
+                  labelText: "Email",
+                  hintText: "Email",
+                  controller: controller.emailController,
                 ),
-                TextField(
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.mail,
-                      color: AppColor.primaryColor1,
-                    ),
-                    labelText: "Email",
-                    hintText: "Email",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      borderSide: BorderSide(
-                        color: AppColor.hintColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: AppColor.primaryColor1),
-                    ),
-                  ),
-                ).addPadding(vertical: 12),
-                TextField(
-                  obscureText: controller.obscurePass.value,
-                  textInputAction: TextInputAction.go,
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.lock,
-                      color: AppColor.primaryColor1,
-                    ),
-                    suffixIcon: GestureDetector(
-                      child: Icon(
-                        Icons.remove_red_eye,
-                        color: AppColor.hintColor,
-                      ),
-                      onTap: () {
-                        controller.obscurePass.value =
-                            !controller.obscurePass.value;
-                      },
-                    ),
-                    labelText: "Password",
-                    hintText: "Password",
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                      borderSide: BorderSide(
-                        color: AppColor.hintColor,
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(color: AppColor.primaryColor1),
-                    ),
-                  ),
-                ).addPadding(vertical: 12),
+                TextFieldPassword(
+                  controller: controller.passwordController,
+                ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.FORGOT_PASSWORD);
+                    },
                     child: Text("Forgot Password?"),
                   ),
                 ),

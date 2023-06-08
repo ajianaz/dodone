@@ -1,6 +1,7 @@
 import 'package:dodone/utils/app_utils.dart';
 import 'package:dodone/widgets/others/show_dialog.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' show json;
 
 class LoginController extends GetxController {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   RxBool obscurePass = true.obs;
 
   GoogleSignInAccount? currentUser;

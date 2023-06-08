@@ -3,7 +3,7 @@
 import 'package:dodone/app/data/models/menu.dart';
 import 'package:dodone/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:dodone/app/modules/setting/views/setting_view.dart';
-import 'package:dodone/app/widgets/btm_nav_item.dart';
+import 'package:dodone/widgets/btm_nav_item.dart';
 import 'package:dodone/utils/rive_utils.dart';
 
 import 'package:flutter/material.dart';
