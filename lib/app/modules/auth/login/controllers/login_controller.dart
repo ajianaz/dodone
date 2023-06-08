@@ -1,6 +1,7 @@
 import 'package:dodone/utils/app_utils.dart';
 import 'package:dodone/widgets/others/show_dialog.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -24,8 +25,8 @@ class LoginController extends GetxController {
     // Optional clientId
     // secret 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
     clientId: GetPlatform.isIOS
-        ? '595405354893-ji9orud828cgl717ml5aed80625f3l3p.apps.googleusercontent.com'
-        : '595405354893-vbel7940fpo1pbnare6vnp5uim5aer9p.apps.googleusercontent.com',
+        ? dotenv.env['CLIENT_ID_IOS']
+        : dotenv.env['CLIENT_ID_ANDROID'],
     scopes: scopes,
   );
 
@@ -50,18 +51,18 @@ class LoginController extends GetxController {
         .listen((GoogleSignInAccount? account) async {
       // In mobile, being authenticated means being authorized...
       isAuthorized = account != null;
-      logSys("Jalan auth awal : $isAuthorized");
+      debugPrint("Jalan auth awal : $isAuthorized");
 
       // However, in the web...
       if (kIsWeb && account != null) {
         await googleSignIn
             .canAccessScopes(scopes)
             .then((value) => isAuthorized = value);
-        logSys("Jalan auth : $isAuthorized");
+        debugPrint("Jalan auth web: $isAuthorized");
       }
 
       currentUser = account;
-      // logSys("User : $currentUser");
+      // debugPrint("User : $currentUser");
       showToast(
         message: currentUser!.displayName.toString(),
         gravity: ToastGravity.TOP_RIGHT,
@@ -90,16 +91,22 @@ class LoginController extends GetxController {
     contactText = 'Loading contact info...';
     update();
 
+    String urlGetContact =
+        "https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses";
+
+    //'https://people.googleapis.com/v1/people/me/connections?requestMask.includeField=person.names'
+
     final http.Response response = await http.get(
-      Uri.parse('https://people.googleapis.com/v1/people/me/connections'
-          '?requestMask.includeField=person.names'),
+      Uri.parse(urlGetContact),
       headers: await user.authHeaders,
     );
+
     if (response.statusCode != 200) {
       contactText = 'People API gave a ${response.statusCode} '
           'response. Check logs for details.';
       update();
-      logSys('People API ${response.statusCode} response: ${response.body}');
+      debugPrint(
+          'People API ${response.statusCode} response: ${response.body}');
       return;
     }
     final Map<String, dynamic> data =
@@ -140,27 +147,30 @@ class LoginController extends GetxController {
   // SDK, so this method can be considered mobile only.
   Future<void> handleSignIn() async {
     try {
-      logSys("Jalan klik");
-      await googleSignIn.signIn().then((value) => logSys('$value'));
+      debugPrint("Jalan klik");
+      await googleSignIn
+          .signIn()
+          .then((value) => debugPrint('$value'))
+          .catchError((onError) => debugPrint("Erorr Catch: $onError"));
     } catch (error) {
-      logSys('$error');
+      debugPrint('Error Catch : $error');
     }
   }
 
   signInClick() {
     try {
       googleSignIn.signOut();
-      logSys("Jalan klik");
+      debugPrint("Jalan signInClick");
       googleSignIn.signIn().then((value) {
-        logSys('Hasil : $value');
+        debugPrint('Hasil : $value');
         googleSignIn.signIn();
       });
     } on Exception catch (ex) {
-      logSys('Terjadi Exception');
-      logSys('$ex'); // Only catches an exception of type `Exception`.
+      debugPrint('Terjadi Exception');
+      debugPrint('$ex'); // Only catches an exception of type `Exception`.
     } catch (error) {
-      logSys('Terjadi Error');
-      logSys('$error');
+      debugPrint('Terjadi Error');
+      debugPrint('$error');
     }
   }
 

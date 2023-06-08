@@ -1,5 +1,6 @@
 // ignore_for_file: sort_child_properties_last
 
+import 'package:dodone/app/routes/app_pages.dart';
 import 'package:dodone/styles/colors.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
@@ -136,6 +137,16 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ).addPadding(vertical: 12),
                 Align(alignment: Alignment.center, child: buildGoogleLogin()),
+                Row(
+                  children: [
+                    Text("Don’t have an account?"),
+                    TextButton(
+                        onPressed: () {
+                          Get.offAndToNamed(Routes.REGISTER);
+                        },
+                        child: Text("Sign up"))
+                  ],
+                )
               ],
             ),
           );

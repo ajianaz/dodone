@@ -6,11 +6,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'app/routes/app_pages.dart';
 import 'languages.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: ".env");
   runApp(
     ScreenUtilInit(
@@ -26,6 +28,7 @@ void main() async {
           initialRoute: AppPages.INITIAL,
           getPages: AppPages.routes,
           theme: ThemeData(
+            fontFamily: GoogleFonts.poppins().fontFamily,
             scaffoldBackgroundColor: AppColor.bgColor,
             primarySwatch: getMaterialColor(AppColor.primaryColor1),
             inputDecorationTheme: const InputDecorationTheme(
